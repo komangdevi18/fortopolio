@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nama Kamu – Web Developer & Desainer</title>
+  <meta name="description" content="Portofolio Nama Kamu, web developer dan desainer antarmuka.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #eef1ee;
+  --surface: #e2e8e3;
+  --ink: #16241f;
+  --muted: #55655e;
+  --accent: #0b6b5d;
+  --accent-ink: #ffffff;
+  --mark: #f3dd6b;
+  --line: #c4cec7;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101a17;
+    --surface: #182621;
+    --ink: #e9f0ec;
+    --muted: #9db0a7;
+    --accent: #5fd0bb;
+    --accent-ink: #0c1b17;
+    --mark: #6b5d12;
+    --line: #2b3d36;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* Layout: sidebar kiri tetap, konten kanan */
+.layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.side { padding: 3rem 2rem; }
+.side-inner { position: sticky; top: 3rem; }
+
+.brand {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.role { color: var(--muted); margin: 0.75rem 0 2rem; max-width: 22ch; }
+
+nav { display: grid; gap: 0.25rem; margin-bottom: 2rem; }
+nav a {
+  text-decoration: none;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+  width: fit-content;
+  font-weight: 500;
+}
+nav a:hover { border-bottom-color: var(--accent); }
+
+.status { display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; color: var(--muted); }
+.dot {
+  width: 0.65rem; height: 0.65rem; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent);
+  animation: pulse 2.4s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 10px transparent; }
+}
+
+/* Konten */
+main { padding: 3rem 2rem 2rem 3rem; border-left: 1px solid var(--line); }
+
+.hero { padding: 2rem 0 4rem; }
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 0 0 1.5rem;
+  max-width: 16ch;
+  background: linear-gradient(transparent 62%, var(--mark) 62% 92%, transparent 92%);
+  width: fit-content;
+  max-width: 100%;
+}
+.hero p { max-width: 52ch; color: var(--muted); font-size: 1.15rem; margin: 0 0 2rem; }
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.85rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.block { padding: 3rem 0; border-top: 1px solid var(--line); }
+.block h2 {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+}
+
+/* Proyek */
+.projects { list-style: none; margin: 0; padding: 0; }
+.projects li + li { border-top: 1px solid var(--line); }
+.projects a {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  gap: 1rem 1.5rem;
+  padding: 1.25rem 0.75rem;
+  margin: 0 -0.75rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+.projects a:hover { background: var(--surface); }
+.year { color: var(--muted); font-variant-numeric: tabular-nums; }
+.p-main strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+.p-main span { color: var(--muted); max-width: 52ch; display: block; }
+.tags { color: var(--accent); font-size: 0.95rem; font-weight: 500; text-align: right; }
+
+/* Tentang */
+.prose { max-width: 62ch; }
+.prose p { margin: 0 0 1rem; }
+
+/* Keahlian */
+.skills { margin: 0; display: grid; gap: 0; max-width: 62ch; }
+.skills div {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.skills dt { font-weight: 600; }
+.skills dd { margin: 0; color: var(--muted); }
+
+/* Kontak */
+.contact p { max-width: 50ch; color: var(--muted); }
+.mail {
+  display: inline-block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  letter-spacing: -0.02em;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--accent);
+  margin: 0.5rem 0 1.25rem;
+  overflow-wrap: anywhere;
+}
+.links { display: flex; gap: 1.5rem; }
+.links a { font-weight: 500; }
+
+footer { padding: 2rem 0 1rem; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); }
+
+/* Tablet dan ponsel */
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .side { padding: 1.5rem 1.25rem 0; }
+  .side-inner { position: static; }
+  .role { max-width: none; margin-bottom: 1rem; }
+  nav { grid-auto-flow: column; justify-content: start; gap: 1.25rem; margin-bottom: 1rem; overflow-x: auto; }
+  main { border-left: 0; padding: 1rem 1.25rem 2rem; }
+  .hero { padding-top: 2rem; }
+  .projects a { grid-template-columns: 1fr; gap: 0.25rem; }
+  .tags { text-align: left; }
+  .skills div { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dot { animation: none; }
+  .btn { transition: none; }
+}
+
+</style>
+</head>
+<body>
+  <div class="layout">
+
+    <header class="side">
+      <div class="side-inner">
+        <a class="brand" href="#top">Nama Kamu</a>
+        <p class="role">Web developer dan desainer antarmuka di Makassar.</p>
+        <nav aria-label="Navigasi utama">
+          <a href="#proyek">Proyek</a>
+          <a href="#tentang">Tentang</a>
+          <a href="#keahlian">Keahlian</a>
+          <a href="#kontak">Kontak</a>
+        </nav>
+        <p class="status"><span class="dot" aria-hidden="true"></span>Menerima proyek baru</p>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <h1>Saya membuat situs yang jelas, cepat, dan enak dipakai.</h1>
+        <p>Dari toko online sampai dasbor internal, saya merancang dan membangun produk web untuk usaha kecil dan tim yang sedang tumbuh.</p>
+        <a class="btn" href="#kontak">Ajak saya bekerja sama</a>
+      </section>
+
+      <section id="proyek" class="block">
+        <h2>Proyek pilihan</h2>
+        <ul class="projects">
+          <li>
+            <a href="#">
+              <span class="year">2026</span>
+              <span class="p-main">
+                <strong>Toko Kopi Daeng</strong>
+                <span>Situs pemesanan kopi dengan pembayaran QRIS. Pesanan naik 40% dalam tiga bulan.</span>
+              </span>
+              <span class="tags">Desain, Next.js</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="year">2025</span>
+              <span class="p-main">
+                <strong>Dasbor Logistik Pelabuhan</strong>
+                <span>Pelacakan pengiriman waktu nyata untuk tim operasional dengan 200+ pengguna.</span>
+              </span>
+              <span class="tags">React, Node.js</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="year">2025</span>
+              <span class="p-main">
+                <strong>Aplikasi Belajar Aksara Lontara</strong>
+                <span>Latihan menulis interaktif untuk pelajar, tersedia dalam bahasa Indonesia dan Bugis.</span>
+              </span>
+              <span class="tags">UI/UX, Flutter</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="year">2024</span>
+              <span class="p-main">
+                <strong>Profil Perusahaan CV Laut Biru</strong>
+                <span>Situs perusahaan statis yang memuat dalam kurang dari satu detik di jaringan seluler.</span>
+              </span>
+              <span class="tags">HTML, CSS, JS</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="tentang" class="block">
+        <h2>Tentang saya</h2>
+        <div class="prose">
+          <p>Saya Nama Kamu, lulusan Teknik Informatika dengan pengalaman lima tahun membangun produk web. Saya suka bekerja dari kebutuhan pengguna: bertanya dulu, merancang sketsa, lalu menulis kode yang rapi dan mudah dirawat.</p>
+          <p>Di luar pekerjaan, saya mengajar pemrograman dasar untuk pelajar SMA dan berburu warung kopi terbaik di kota.</p>
+        </div>
+      </section>
+
+      <section id="keahlian" class="block">
+        <h2>Keahlian</h2>
+        <dl class="skills">
+          <div><dt>Desain</dt><dd>Figma, riset pengguna, desain sistem, prototipe</dd></div>
+          <div><dt>Front-end</dt><dd>HTML, CSS, JavaScript, React, Next.js</dd></div>
+          <div><dt>Back-end</dt><dd>Node.js, PostgreSQL, REST API</dd></div>
+          <div><dt>Praktik</dt><dd>Aksesibilitas, performa, SEO dasar, Git</dd></div>
+        </dl>
+      </section>
+
+      <section id="kontak" class="block contact">
+        <h2>Kontak</h2>
+        <p>Ceritakan proyek Anda. Saya biasanya membalas dalam satu hari kerja.</p>
+        <a class="mail" href="mailto:halo@namakamu.com">halo@namakamu.com</a>
+        <p class="links">
+          <a href="https://github.com/namakamu">GitHub</a>
+          <a href="https://linkedin.com/in/namakamu">LinkedIn</a>
+          <a href="https://instagram.com/namakamu">Instagram</a>
+        </p>
+      </section>
+
+      <footer>© 2026 Nama Kamu. Dibuat dengan HTML dan CSS.</footer>
+    </main>
+
+  </div>
+</body>
+</html>
